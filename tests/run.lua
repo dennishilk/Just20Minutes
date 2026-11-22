@@ -424,11 +424,12 @@ test("all settings pages scroll and active category is marked",function()
 end)
 test("links remain selectable, unmodified and keyboard-accessible",function()
  fresh();local expected={"https://www.dennishilk.com","https://www.youtube.com/@dennis_hilk",
- "https://github.com/dennishilk/Just20Minutes"}
+ "https://github.com/dennishilk/Just20Minutes","https://buymeacoffee.com/dennishilk"}
+ eq(#J.settingUI.links,#expected)
  for i,edit in ipairs(J.settingUI.links) do
   eq(edit:GetText(),expected[i]);edit:SetFocus();assert(edit.highlighted)
   edit:SetText("altered");edit.scripts.OnTextChanged(edit);eq(edit:GetText(),expected[i])
-  edit.scripts.OnTabPressed(edit);assert(J.settingUI.links[i%3+1].focused)
+  edit.scripts.OnTabPressed(edit);assert(J.settingUI.links[i%#expected+1].focused)
  end
 end)
 test("minimap tooltip reflects state without starting timer",function()

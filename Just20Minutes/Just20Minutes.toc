@@ -3,7 +3,7 @@
 ## Notes: Your friendly WoW session timer.
 ## Notes-deDE: Dein freundlicher Spielzeit-Timer für Azeroth.
 ## Author: Dennis Hilk
-## Version: 1.0.2
+## Version: 1.0.3
 ## SavedVariables: Just20MinutesDB
 ## X-License: MIT
 ## X-Website: https://github.com/dennishilk/Just20Minutes

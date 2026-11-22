@@ -1,5 +1,5 @@
 local addonName, J = ...
-J.name, J.version = addonName, "1.0.2"
+J.name, J.version = addonName, "1.0.3"
 J.presets = {10, 15, 20, 30, 45, 60, 90, 120}
 J.reloadRequested = false
 

@@ -1,10 +1,10 @@
 # Just 20 Minutes
 
-[![Release](https://img.shields.io/badge/Release-v1.0.2-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.2) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
+[![Release](https://img.shields.io/badge/Release-v1.0.3-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.3) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
 
 **Dein freundlicher Spielzeit-Timer für WoW.** *Enjoy Azeroth. Remember real life.*
 
-**Autor:** Dennis Hilk | **Version:** 1.0.2 | **WoW Forever:** Interface 16001 | **Lizenz:** MIT
+**Autor:** Dennis Hilk | **Version:** 1.0.3 | **WoW Forever:** Interface 16001 | **Lizenz:** MIT
 
 [English](README.md) · [Downloads](https://github.com/dennishilk/Just20Minutes/releases) · [Fehler melden](https://github.com/dennishilk/Just20Minutes/issues)
 
@@ -26,7 +26,7 @@
 
 ## Installation
 
-Das **Just20Minutes-v1.0.2.zip** von [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases) herunterladen, entpacken und den darin liegenden Ordner **Just20Minutes** hierher kopieren:
+Das **Just20Minutes-v1.0.3.zip** von [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases) herunterladen, entpacken und den darin liegenden Ordner **Just20Minutes** hierher kopieren:
 
     World of Warcraft/
       _forever_/
@@ -109,8 +109,8 @@ Lokale Prüfung mit Lua 5.1 und Python 3:
     lua5.1 tests/run.lua
     python3 scripts/package.py
 
-GitHub Actions prüft außerdem Syntax, Tests, TOC und Installations-ZIP. Version 1.0.1 wurde vom Autor am 22. November 2026 im echten Client getestet. **Für die neue Version 1.0.2 liegen automatisierte Tests mit einem simulierten Client vor; die Ingame-Abnahme steht noch aus.** Die [manuelle Testliste](docs/MANUAL_TESTING.md) beschreibt die Prüfung. Simulierte Layouts sind keine Ingame-Screenshots.
+GitHub Actions prüft außerdem Syntax, Tests, TOC und Installations-ZIP. Version 1.0.1 wurde vom Autor am 22. November 2026 im echten Client getestet. **Für die neue Version 1.0.3 liegen automatisierte Tests mit einem simulierten Client vor; die Ingame-Abnahme steht noch aus.** Die [manuelle Testliste](docs/MANUAL_TESTING.md) beschreibt die Prüfung. Simulierte Layouts sind keine Ingame-Screenshots.
 
 Daten bleiben lokal in WoWs SavedVariables. Keine externen Dienste, Konten, Werbung oder Telemetrie. Feedback über [Issues](https://github.com/dennishilk/Just20Minutes/issues). Siehe [CHANGELOG](CHANGELOG.md) und die unveränderte [MIT-Lizenz](LICENSE).
 
-Mehr von Dennis: [Webseite](https://www.dennishilk.com) · [YouTube — Dennis Hilk](https://www.youtube.com/@dennis_hilk)
+Mehr von Dennis: [Webseite](https://www.dennishilk.com) · [YouTube — Dennis Hilk](https://www.youtube.com/@dennis_hilk) · [Kaffeekasse](https://buymeacoffee.com/dennishilk)

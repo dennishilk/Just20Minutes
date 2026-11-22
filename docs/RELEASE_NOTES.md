@@ -1,14 +1,11 @@
-## Just 20 Minutes v1.0.2 — Visual Polish & Smart Reminders
+## Just 20 Minutes v1.0.3 — A coffee for Dennis
 
-- Ruhige Schiefer-/Goldoptik, lesbareres Widget und gruppierte Einstellungen.
-- Kurze Abenteuer bekommen passende Hinweise: 2 Minuten → 1:00 / 0:30; 5 Minuten → 2:30 / 1:00.
-- Sichtbare Hinweisboxen, freundlicher Abschlussdialog und verbesserter Family Mode.
-- Einmalige Warnungen, sicherer Kampfaufschub, gespeicherte Erinnerungspläne und Positionen.
-- Über-Seite mit Dennis Hilk, Normal (PvE), Ostfriesen Raid und kopierbaren Website-/YouTube-Links.
-- Deutsche und englische Texte; Auto-Start und Ton bleiben standardmäßig aus.
+- Neuer kopierbarer Kaffeelink unter **Über → Mehr von Dennis**: https://buymeacoffee.com/dennishilk
+- Deutsche Beschriftung **Kaffeekasse**, englisch **Buy a coffee**; per Klick markieren und mit Strg+C kopieren.
+- Der Link steht auch in beiden README-Dateien.
 
-Download **Just20Minutes-v1.0.2.zip** and extract the contained `Just20Minutes` folder into `_forever_/Interface/AddOns/`. Existing settings and character profiles are migrated automatically.
+Download **Just20Minutes-v1.0.3.zip** and extract the contained `Just20Minutes` folder into `_forever_/Interface/AddOns/`. This small update includes the visual polish and adaptive reminders from v1.0.2. Existing settings and character profiles are kept. Previous releases remain available.
 
-Automated validation covers Lua 5.1 syntax, mocked timer/UI/localization regressions, SavedVariables migration and the installable ZIP. **v1.0.2 still needs its first real WoW Forever in-game test.** The earlier v1.0.1 release is preserved.
+Automated checks cover Lua 5.1 syntax, all 75 timer/UI/localization regressions, the four selectable About links and ZIP validation. Real WoW Forever in-game testing is still pending.
 
 MIT · Interface 16001 · Fully offline · No runtime libraries · No forced logout

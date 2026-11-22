@@ -260,7 +260,8 @@ local function buildAbout(page)
     S.links = {}
     for _, item in ipairs({{"WEBSITE_LABEL", "https://www.dennishilk.com"},
         {"YOUTUBE_LABEL", "https://www.youtube.com/@dennis_hilk"},
-        {"GITHUB_LABEL", "https://github.com/dennishilk/Just20Minutes"}}) do
+        {"GITHUB_LABEL", "https://github.com/dennishilk/Just20Minutes"},
+        {"COFFEE_LABEL", "https://buymeacoffee.com/dennishilk"}}) do
         textAt(page, item[1], 14, -page.cursor, 100, 28)
         local edit = CreateFrame("EditBox", nil, page, "InputBoxTemplate")
         edit:SetSize(365, 28); edit:SetAutoFocus(false)

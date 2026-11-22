@@ -1,10 +1,10 @@
 # Just 20 Minutes
 
-[![Release](https://img.shields.io/badge/Release-v1.0.2-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.2) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
+[![Release](https://img.shields.io/badge/Release-v1.0.3-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.3) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
 
 **Your friendly WoW session timer.** *Enjoy Azeroth. Remember real life.*
 
-**Author:** Dennis Hilk | **Version:** 1.0.2 | **WoW Forever interface:** 16001 | **License:** MIT
+**Author:** Dennis Hilk | **Version:** 1.0.3 | **WoW Forever interface:** 16001 | **License:** MIT
 
 [Deutsch](README.de.md) · [Download releases](https://github.com/dennishilk/Just20Minutes/releases) · [Report an issue](https://github.com/dennishilk/Just20Minutes/issues)
 
@@ -26,7 +26,7 @@ Choose your playtime, enjoy Azeroth and get gentle reminders before it's time to
 
 ## Installation
 
-Download **Just20Minutes-v1.0.2.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
+Download **Just20Minutes-v1.0.3.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
 
     World of Warcraft/
       _forever_/
@@ -111,8 +111,8 @@ Run locally with Lua 5.1 and Python 3:
     lua5.1 tests/run.lua
     python3 scripts/package.py
 
-GitHub Actions also performs syntax, mock-API regression and TOC/ZIP checks before publication. The author tested v1.0.1 in the real client on 22 November 2026. **The new v1.0.2 has automated mock-client validation only; its in-game acceptance test is still pending.** Follow the [manual in-game checklist](docs/MANUAL_TESTING.md). Mock layouts are not game screenshots.
+GitHub Actions also performs syntax, mock-API regression and TOC/ZIP checks before publication. The author tested v1.0.1 in the real client on 22 November 2026. **The new v1.0.3 has automated mock-client validation only; its in-game acceptance test is still pending.** Follow the [manual in-game checklist](docs/MANUAL_TESTING.md). Mock layouts are not game screenshots.
 
 There are no network calls, telemetry, ads or registration; preferences remain in WoW's local SavedVariables. Report defects and propose changes using [Issues](https://github.com/dennishilk/Just20Minutes/issues). See [CHANGELOG](CHANGELOG.md) and the preserved [MIT LICENSE](LICENSE).
 
-More from Dennis: [Website](https://www.dennishilk.com) · [YouTube — Dennis Hilk](https://www.youtube.com/@dennis_hilk)
+More from Dennis: [Website](https://www.dennishilk.com) · [YouTube — Dennis Hilk](https://www.youtube.com/@dennis_hilk) · [Buy me a coffee](https://buymeacoffee.com/dennishilk)

@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.3] - 2026-11-22
+
+- Add Dennis's optional Buy Me a Coffee link to About, with localized German/English labels and the same selectable, keyboard-accessible URL fields.
+- Add the support link to both READMEs; preserve previous releases.
+
 ## [1.0.2] - 2026-11-22
 
 - Introduce a shared slate/gold UI, semantic action colors, readable countdown, explicit idle/paused states and a full neutral idle progress bar.

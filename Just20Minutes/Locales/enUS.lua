@@ -155,6 +155,7 @@ J.locales.enUS = {
     WEBSITE_LABEL = "Website",
     YOUTUBE_LABEL = "YouTube",
     GITHUB_LABEL = "GitHub / Addon",
+    COFFEE_LABEL = "Buy a coffee",
     COPY_LINK_HINT = "Click a link, then press Ctrl+C to copy. Open it in your browser.",
     SECTION_PRIVACY = "Made for your time",
     ABOUT_PRIVACY = "Choose your playtime, enjoy Azeroth, decide when to finish. Fully offline: no tracking or data transfer. Voluntary time management, not parental control.",
