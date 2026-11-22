@@ -77,6 +77,7 @@ local function bool(key)
         function(value)
             J.settings[key] = value
             if J.ApplyAppearance then J.ApplyAppearance() end
+            if J.UpdateMinimapButton then J.UpdateMinimapButton() end
         end
 end
 local function enum(key)
@@ -114,12 +115,17 @@ local function buildAppearance(page)
     get,set = bool("colorBlind"); check(page,"COLORBLIND",4,get,set)
     get,set = bool("locked"); check(page,"LOCK_POSITION",5,get,set)
     get,set = bool("widgetAlways"); check(page,"ALWAYS_VISIBLE",6,get,set)
+    get,set = bool("showMinimapButton"); check(page,"MINIMAP_BUTTON",8,get,set)
     get,set = enum("theme")
     cycle(page,"COLOR_THEME",7,{{"classic","THEME_CLASSIC"},{"blue","THEME_BLUE"},{"gold","THEME_GOLD"}},get,set)
     action(page,"RESET_POSITION",9,function()
         local p = J.Position()
         p.x,p.y=0,-180
         J.ApplyAppearance()
+    end)
+    action(page,"RESET_MINIMAP_POSITION",10,function()
+        J.settings.minimapAngle = 225
+        J.UpdateMinimapButton()
     end)
 end
 

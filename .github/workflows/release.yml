@@ -26,18 +26,18 @@ jobs:
       - name: Upload installable ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: Just20Minutes-v1.0.0
-          path: dist/Just20Minutes-v1.0.0.zip
+          name: Just20Minutes-v1.0.1
+          path: dist/Just20Minutes-v1.0.1.zip
           if-no-files-found: error
       - name: Create GitHub release
         if: github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if ! gh release view v1.0.0 >/dev/null 2>&1; then
-            gh release create v1.0.0 \
-              dist/Just20Minutes-v1.0.0.zip \
+          if ! gh release view v1.0.1 >/dev/null 2>&1; then
+            gh release create v1.0.1 \
+              dist/Just20Minutes-v1.0.1.zip \
               --target "$GITHUB_SHA" \
-              --title "Just 20 Minutes v1.0.0" \
-              --notes "First Forever build (Interface 16001). Localized timer, UI, profiles, alerts and tests. Ingame validation pending."
+              --title "Just 20 Minutes v1.0.1" \
+              --notes "New minimap pocket-watch launcher, and confirmed opt-in login auto-start. Interface 16001; in-game validation pending."
           fi

@@ -1,5 +1,5 @@
 local addonName, J = ...
-J.name, J.version = addonName, "1.0.0"
+J.name, J.version = addonName, "1.0.1"
 J.presets = {10, 15, 20, 30, 45, 60, 90, 120}
 J.reloadRequested = false
 
@@ -40,6 +40,13 @@ function J.Refresh()
     if J.RefreshSettings then J.RefreshSettings() end
 end
 
+function J.ShouldAutoStart()
+    -- Only the user can enable automatic login start in Settings.
+    return J.db and J.db.welcomeShown == true and J.settings
+        and J.settings.autoStart == true and J.session
+        and J.session.state == "IDLE"
+end
+
 function J.OnLogin()
     J.DBInit()
     J.TimerRestore()
@@ -47,12 +54,13 @@ function J.OnLogin()
     J.BuildUI()
     J.BuildSettings()
     J.RegisterCommands()
+    J.BuildMinimapButton()
     if J.settings.showAtLogin and (J.settings.widgetAlways or J.session.state ~= "IDLE") then
         J.RefreshUI()
     end
     if not J.db.welcomeShown then
         J.ShowWelcome()
-    elseif J.settings.autoStart and J.session.state == "IDLE" then
+    elseif J.ShouldAutoStart() then
         J.TimerStart(J.EffectiveMinutes())
     end
     J.Refresh()

@@ -22,7 +22,8 @@ local function fake()
  "SetFrameStrata","SetJustifyH","SetJustifyV","SetAutoFocus","SetMaxLetters",
  "SetNumeric","SetAlpha","SetScale","SetHeight","SetWidth","ClearAllPoints",
  "SetColorTexture","SetTextColor","SetWordWrap","SetFontObject",
- "StartMoving","StopMovingOrSizing","RegisterEvent"}) do f[k]=function()end end
+ "StartMoving","StopMovingOrSizing","RegisterEvent","SetTexture","SetTexCoord",
+ "SetHighlightTexture","RegisterForClicks","SetFrameLevel"}) do f[k]=function()end end
  function f:SetScript(k,fn) self.scripts[k]=fn end
  function f:SetText(v) self.value=v end
  function f:GetText() return self.value end
@@ -34,15 +35,19 @@ local function fake()
  function f:IsShown() return self.visible end
  function f:GetCenter() return 500,400 end
  function f:GetEffectiveScale() return 1 end
+ function f:GetWidth() return 140 end
+ function f:GetFrameLevel() return 0 end
  function f:CreateFontString() return fake() end
  function f:CreateTexture() return fake() end
  return f
 end
 function CreateFrame()return fake()end
 UIParent=fake()
+Minimap=fake()
+function GetCursorPosition() return 650,400 end
 local J={}
 for _,name in ipairs({"Locales/enUS.lua","Locales/deDE.lua","Core.lua","Database.lua",
-"Timer.lua","Notifications.lua","UI.lua","Settings.lua","Commands.lua"}) do
+"Timer.lua","Notifications.lua","UI.lua","Minimap.lua","Settings.lua","Commands.lua"}) do
  assert(loadfile("Just20Minutes/"..name))("Just20Minutes",J)
 end
 J.DBInit();J.settings.mode="chat";J.BuildUI();J.BuildSettings();J.RegisterCommands()
@@ -176,5 +181,43 @@ test("widget lock, placement, idle display",function()
  assert(not J.ui.widget:IsShown())
  J.settings.widgetAlways=true;J.RefreshUI()
  assert(J.ui.widget:IsShown())
+end)
+test("minimap left/right clicks, drag, visibility and persistence",function()
+ J.BuildMinimapButton()
+ local b=J.minimapButton
+ assert(b and b.scripts.OnClick and b.scripts.OnDragStart)
+ local before=J.ui.main:IsShown()
+ b.scripts.OnClick(b,"LeftButton")
+ eq(J.ui.main:IsShown(),not before)
+ J.settingUI.frame:Hide()
+ b.scripts.OnClick(b,"RightButton")
+ assert(J.settingUI.frame:IsShown())
+ J.settings.minimapAngle=225
+ b.scripts.OnDragStart(b)
+ assert(b.scripts.OnUpdate)
+ b.scripts.OnUpdate(b)
+ b.scripts.OnDragStop(b)
+ eq(J.settings.minimapAngle,0)
+ J.settings.showMinimapButton=false
+ J.UpdateMinimapButton()
+ assert(not b:IsShown())
+ J.DBInit()
+ eq(J.settings.minimapAngle,0)
+ eq(J.settings.showMinimapButton,false)
+ J.settings.showMinimapButton=true
+ J.UpdateMinimapButton()
+ assert(b:IsShown())
+end)
+test("login never auto-starts without settings opt-in",function()
+ eq(J.CleanSettings({}).autoStart,false)
+ J.TimerStop(true)
+ J.db.welcomeShown=true
+ J.settings.autoStart=false
+ assert(not J.ShouldAutoStart())
+ eq(J.session.state,"IDLE")
+ J.settings.autoStart=true
+ assert(J.ShouldAutoStart())
+ eq(J.session.state,"IDLE")
+ J.settings.autoStart=false
 end)
 print(string.format("All %d mocked-client tests passed.",total))

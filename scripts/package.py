@@ -9,7 +9,7 @@ addon = root / "Just20Minutes"
 toc = addon / "Just20Minutes.toc"
 data = toc.read_text(encoding="utf-8")
 assert re.search(r"^## Interface: 16001$", data, re.M)
-assert re.search(r"^## Version: 1.0.0$", data, re.M)
+assert re.search(r"^## Version: 1.0.1$", data, re.M)
 assert "## SavedVariables: Just20MinutesDB" in data
 includes = [s.strip().replace("\\", "/") for s in data.splitlines()
             if s.strip() and not s.startswith("#")]
@@ -19,7 +19,7 @@ for item in includes:
     assert item.endswith(".lua"), f"Invalid TOC entry {item}"
 dist = root / "dist"
 dist.mkdir(exist_ok=True)
-target = dist / "Just20Minutes-v1.0.0.zip"
+target = dist / "Just20Minutes-v1.0.1.zip"
 with ZipFile(target, "w", ZIP_DEFLATED) as z:
     z.write(toc, "Just20Minutes/Just20Minutes.toc")
     for item in includes:

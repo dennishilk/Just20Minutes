@@ -1,10 +1,10 @@
 # Just 20 Minutes
 
-[![Release](https://img.shields.io/badge/Release-v1.0.0-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.0) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
+[![Release](https://img.shields.io/badge/Release-v1.0.1-1E90FF?style=flat-square)](https://github.com/dennishilk/Just20Minutes/releases/tag/v1.0.1) [![WoW Forever](https://img.shields.io/badge/WoW-Forever-8A2BE2?style=flat-square)](https://github.com/dennishilk/Just20Minutes) ![Interface](https://img.shields.io/badge/Interface-16001-F59E0B?style=flat-square) ![Lua](https://img.shields.io/badge/Lua-5.1-2C2D72?style=flat-square&logo=lua&logoColor=white) [![CI](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml/badge.svg)](https://github.com/dennishilk/Just20Minutes/actions/workflows/release.yml) [![MIT License](https://img.shields.io/badge/License-MIT-22A06B?style=flat-square)](LICENSE) ![Languages](https://img.shields.io/badge/Languages-DE%20%7C%20EN-0EA5E9?style=flat-square)
 
 **Your friendly WoW session timer.** *Enjoy Azeroth. Remember real life.*
 
-**Author:** Dennis Hilk | **Version:** 1.0.0 | **WoW Forever interface:** 16001 | **License:** MIT
+**Author:** Dennis Hilk | **Version:** 1.0.1 | **WoW Forever interface:** 16001 | **License:** MIT
 
 [Deutsch](README.de.md) · [Download releases](https://github.com/dennishilk/Just20Minutes/releases) · [Report an issue](https://github.com/dennishilk/Just20Minutes/issues)
 
@@ -19,11 +19,13 @@ Choose your playtime, enjoy Azeroth and get gentle reminders before it's time to
 - Friendly wind-down guidance, optional Family Mode and end-of-session dialog with manual extensions.
 - Full English and German UI, slash help and errors.
 - Account settings plus per-character duration/position, profile copying and confirmed reset. Local SavedVariables only.
+- A pocket-watch minimap icon: left-click opens the timer, right-click opens Settings; drag to move and toggle visibility in Appearance.
+- Automatic session start on login is **off by default**. Enable it explicitly in General settings if you want it. The minimap icon never starts the timer itself.
 - No required libraries, telemetry, advertising, accounts or external services.
 
 ## Installation
 
-Download **Just20Minutes-v1.0.0.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
+Download **Just20Minutes-v1.0.1.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
 
     World of Warcraft/
       _forever_/
@@ -36,6 +38,7 @@ Download **Just20Minutes-v1.0.0.zip** from [GitHub Releases](https://github.com/
               Timer.lua
               Notifications.lua
               UI.lua
+              Minimap.lua
               Settings.lua
               Commands.lua
               Locales/

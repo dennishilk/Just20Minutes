@@ -2,6 +2,7 @@ local _, J = ...
 local DEFAULTS = {
     defaultMinutes = 20, lastMinutes = 20, rememberLast = true,
     showAtLogin = true, autoStart = false, resumeOnLogin = false,
+    showMinimapButton = true, minimapAngle = 225,
     widgetAlways = false, compact = false, progress = true, scale = 1,
     alpha = 0.90, locked = false, colorBlind = false, theme = "classic",
     mode = "screen", sound = false, deferCombat = true,
@@ -41,6 +42,7 @@ local function cleanSettings(input)
             out[key] = given
         elseif type(val) == "number" then
             local lo, hi = 1, 600
+            if key == "minimapAngle" then lo, hi = 0, 360 end
             if key == "scale" then lo, hi = 0.7, 1.5 end
             if key == "alpha" then lo, hi = 0.3, 1 end
             if finite(given, lo, hi) then
@@ -166,5 +168,6 @@ function J.ResetSettings()
     J.profile = J.db.profiles[J.charKey]
     J.TimerStop(true)
     if J.ApplyAppearance then J.ApplyAppearance() end
+    if J.UpdateMinimapButton then J.UpdateMinimapButton() end
     J.Refresh()
 end
