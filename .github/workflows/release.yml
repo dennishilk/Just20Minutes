@@ -5,11 +5,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: just20minutes-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  validate-and-release:
+  validate:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - name: Install Lua 5.1
@@ -23,21 +29,45 @@ jobs:
         run: lua5.1 tests/run.lua
       - name: Validate and package
         run: python3 scripts/package.py
+      - name: Read validated version
+        id: version
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import re
+          from pathlib import Path
+          toc = Path('Just20Minutes/Just20Minutes.toc').read_text()
+          print('version=' + re.search(r'^## Version: (.+)$', toc, re.M).group(1))
+          PY
       - name: Upload installable ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: Just20Minutes-v1.0.1
-          path: dist/Just20Minutes-v1.0.1.zip
+          name: Just20Minutes-v${{ steps.version.outputs.version }}
+          path: dist/Just20Minutes-v${{ steps.version.outputs.version }}.zip
           if-no-files-found: error
-      - name: Create GitHub release
-        if: github.ref == 'refs/heads/main'
+
+  release:
+    needs: validate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Just20Minutes-v${{ needs.validate.outputs.version }}
+          path: dist
+      - name: Publish new version after all checks pass
         env:
           GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.validate.outputs.version }}
         run: |
-          if ! gh release view v1.0.1 >/dev/null 2>&1; then
-            gh release create v1.0.1 \
-              dist/Just20Minutes-v1.0.1.zip \
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "Release v$VERSION already exists; leaving it unchanged."
+          else
+            gh release create "v$VERSION" \
+              "dist/Just20Minutes-v$VERSION.zip" \
               --target "$GITHUB_SHA" \
-              --title "Just 20 Minutes v1.0.1" \
-              --notes "New minimap pocket-watch launcher, and confirmed opt-in login auto-start. Interface 16001; in-game validation pending."
+              --title "Just 20 Minutes v$VERSION" \
+              --notes-file docs/RELEASE_NOTES.md
           fi

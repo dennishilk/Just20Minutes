@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.2] - 2026-11-22
+
+- Introduce a shared slate/gold UI, semantic action colors, readable countdown, explicit idle/paused states and a full neutral idle progress bar.
+- Group all six settings pages into scrollable sections with a highlighted navigation selection, live appearance changes and usable disabled controls.
+- Add persisted adaptive reminder plans for 1–5-minute sessions: halfway plus a final reminder; retain classic warnings for longer sessions.
+- Consume each threshold once, collapse lag/combat crossings into truthful current-time reminders, preserve plans through reloads, and prevent halfway replay after extensions.
+- Add five-second screen reminder toasts, optional native-notice fallback, default-off built-in sound and family-specific short-session/closing text.
+- Refine the completion dialog, minimap status tooltip, window placement, scaling and display-change clamping.
+- Add localized player details (Dennis Hilk, Normal PvE, Ostfriesen Raid) and selectable website/YouTube/project URLs to About.
+- Migrate schema-1 SavedVariables without losing account preferences, character profiles, minimap position or opt-in login behavior.
+- Expand automated Lua 5.1 regression coverage and strict UI mocks; validate deterministic addon ZIPs and version consistency. Publish releases only after the validation job succeeds; never overwrite an existing release.
+- v1.0.2 real-client in-game validation remains pending.
+
 ## [1.0.1] - 2026-11-22
 
 - Add a dependency-free pocket-watch minimap button to open the timer (left-click) or Settings (right-click).

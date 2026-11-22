@@ -1,5 +1,5 @@
 local addonName, J = ...
-J.name, J.version = addonName, "1.0.1"
+J.name, J.version = addonName, "1.0.2"
 J.presets = {10, 15, 20, 30, 45, 60, 90, 120}
 J.reloadRequested = false
 
@@ -70,11 +70,24 @@ local events = CreateFrame("Frame")
 events:RegisterEvent("PLAYER_LOGIN")
 events:RegisterEvent("PLAYER_LOGOUT")
 events:RegisterEvent("PLAYER_REGEN_ENABLED")
+events:RegisterEvent("PLAYER_REGEN_DISABLED")
+-- Optional display events vary across legacy/custom clients.
+pcall(events.RegisterEvent, events, "DISPLAY_SIZE_CHANGED")
+pcall(events.RegisterEvent, events, "UI_SCALE_CHANGED")
 events:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_LOGIN" then
         J.OnLogin()
     elseif event == "PLAYER_LOGOUT" then
         if J.session then J.TimerSave() end
+    elseif event == "PLAYER_REGEN_DISABLED" then
+        if J.HideToast then J.HideToast() end
+        if J.ui and J.ui.finish and J.ui.finish:IsShown() then
+            J.ui.finish:Hide()
+            J.pendingFinish = J.session and J.session.state == "EXPIRED"
+        end
+    elseif event == "DISPLAY_SIZE_CHANGED" or event == "UI_SCALE_CHANGED" then
+        if J.FitWindows then J.FitWindows() end
+        if J.ApplyAppearance then J.ApplyAppearance() end
     elseif event == "PLAYER_REGEN_ENABLED" then
         if J.DeliverDeferred then J.DeliverDeferred() end
     end

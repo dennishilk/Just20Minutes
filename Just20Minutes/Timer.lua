@@ -23,7 +23,7 @@ end
 
 function J.TimerSave()
     local s = J.session
-    if s.state == "RUNNING" then s.remaining = J.TimerRemaining() end
+    if s.state == "RUNNING" then J.TimerPoll() end
     s.exitEpoch = J.Epoch()
     s.reloadIntent = J.reloadRequested
     -- SavedVariables themselves flush only on logout/reload, not continuously.
@@ -45,6 +45,7 @@ function J.TimerRestore()
         end
     end
     s.exitEpoch, s.reloadIntent = 0, false
+    J.NotificationsInit(true)
 end
 
 function J.TimerStart(minutes)
@@ -57,11 +58,16 @@ function J.TimerStart(minutes)
         J.Print(J.T("ALREADY_RUNNING"))
         return false
     end
+    J.ClearNotifications()
     local s = J.session
     s.state, s.remaining, s.duration, s.fired = "RUNNING", minutes * 60, minutes * 60, {}
+    s.planDuration, s.reminderType = s.duration, nil
+    J.NotificationsInit(false)
     J.baseRemaining, J.startedAt = s.remaining, J.Now()
     J.widgetManuallyHidden = false
     if J.HideFinish then J.HideFinish() end
+    J.db.welcomeShown = true
+    if J.ui then J.ui.welcome = false end
     J.settings.lastMinutes = minutes
     J.profile.minutes = minutes
     J.Notify("start")
@@ -70,6 +76,8 @@ function J.TimerStart(minutes)
 end
 
 function J.TimerPause()
+    if J.session.state ~= "RUNNING" then return false end
+    J.TimerPoll()
     if J.session.state ~= "RUNNING" then return false end
     J.session.remaining = J.TimerRemaining()
     J.session.state = "PAUSED"
@@ -89,6 +97,7 @@ function J.TimerResume()
 end
 
 function J.TimerStop(silent)
+    J.ClearNotifications()
     local s = J.session
     s.state, s.remaining, s.fired = "IDLE", 0, {}
     J.startedAt = nil
@@ -115,11 +124,15 @@ function J.TimerAdd(minutes)
         J.Print(J.T("NOT_RUNNING"))
         return false
     end
+    if s.state == "RUNNING" then J.TimerPoll() end
     local remaining = J.TimerRemaining()
     if remaining + minutes * 60 > 36000 then
         J.Print(J.T("ERR_MAX_REMAINING"))
         return false
     end
+    J.ClearNotifications()
+    -- Halfway belongs to the original, unextended session.
+    s.fired.half = true
     s.remaining = remaining + minutes * 60
     s.duration = math.max(s.duration, s.remaining)
     if s.state == "RUNNING" or s.state == "EXPIRED" then
@@ -152,5 +165,5 @@ end
 function J.TimerStatus()
     local state = J.T("STATE_" .. J.session.state)
     return string.format("%s: %s (%s)", J.T("TIME_REMAINING"),
-        J.FormatTime(J.TimerRemaining()), state)
+        J.FormatTime(J.session.state == "IDLE" and J.EffectiveMinutes() * 60 or J.TimerRemaining()), state)
 end

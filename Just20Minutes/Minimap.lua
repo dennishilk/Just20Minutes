@@ -83,6 +83,8 @@ function J.BuildMinimapButton()
         GameTooltip:SetOwner(self, "ANCHOR_LEFT")
         GameTooltip:SetText(J.T("APP_TITLE"))
         if GameTooltip.AddLine then
+            GameTooltip:AddLine(J.session.state == "IDLE" and J.T("NO_TIMER") or J.TimerStatus(),
+                0.94, 0.93, 0.91, true)
             GameTooltip:AddLine(J.T("MINIMAP_TOOLTIP"), 0.95, 0.84, 0.5, true)
         end
         GameTooltip:Show()

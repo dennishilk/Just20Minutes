@@ -5,11 +5,13 @@ local DEFAULTS = {
     showMinimapButton = true, minimapAngle = 225,
     widgetAlways = false, compact = false, progress = true, scale = 1,
     alpha = 0.90, locked = false, colorBlind = false, theme = "classic",
-    mode = "screen", sound = false, deferCombat = true,
+    mode = "screen", sound = false, deferCombat = true, adaptive = true,
+    toast = true,
     family = false, windDown = true, closingPopup = true,
     language = "auto", characterMinutes = false, characterPosition = false,
     warnings = { [600] = true, [300] = true, [120] = true, [0] = true },
     position = { x = 0, y = -180 },
+    mainPosition = { x = 0, y = 0 }, settingsPosition = { x = 0, y = 0 },
 }
 J.defaults = DEFAULTS
 
@@ -59,10 +61,12 @@ local function cleanSettings(input)
             end
         end
     end
-    if type(input.position) == "table" then
-        for _, axis in ipairs({"x", "y"}) do
-            if finite(input.position[axis], -10000, 10000) then
-                out.position[axis] = input.position[axis]
+    for _, key in ipairs({"position", "mainPosition", "settingsPosition"}) do
+        if type(input[key]) == "table" then
+            for _, axis in ipairs({"x", "y"}) do
+                if finite(input[key][axis], -10000, 10000) then
+                    out[key][axis] = input[key][axis]
+                end
             end
         end
     end
@@ -99,12 +103,15 @@ local function cleanSession(input)
     end
     local fired = {}
     if type(input.fired) == "table" then
-        for _, k in ipairs({"600", "300", "120", "0"}) do
+        for _, k in ipairs({"600", "300", "120", "0", "half", "final"}) do
             fired[k] = input.fired[k] == true
         end
     end
     return {
-        state = state, remaining = remaining, duration = duration, fired = fired,
+        state = state, remaining = math.min(remaining, duration), duration = duration, fired = fired,
+        planDuration = finite(input.planDuration, 60, 36000) and math.min(duration, input.planDuration) or duration,
+        reminderType = (input.reminderType == "adaptive" or input.reminderType == "classic")
+            and input.reminderType or nil,
         exitEpoch = finite(input.exitEpoch, 0, 9999999999) and input.exitEpoch or 0,
         reloadIntent = input.reloadIntent == true,
     }
@@ -113,9 +120,10 @@ J.CleanSession = cleanSession
 
 function J.DBInit()
     local old = type(Just20MinutesDB) == "table" and Just20MinutesDB or {}
-    -- Schema 1: all keys are validated; unknown future fields are deliberately ignored.
+    -- Schema 2 adds a fixed reminder plan and preserves schema-1 settings/profiles.
+    -- all keys are validated; unknown future fields are deliberately ignored.
     local new = {
-        schema = 1, settings = cleanSettings(old.settings),
+        schema = 2, settings = cleanSettings(old.settings),
         profiles = {}, sessions = {}, welcomeShown = old.welcomeShown == true
     }
     if type(old.profiles) == "table" then

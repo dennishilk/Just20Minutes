@@ -1,18 +1,23 @@
-# WoW Forever in-game acceptance checklist
+# WoW Forever v1.0.2 in-game acceptance checklist
 
-Real-client tests are required; mocks cannot count as an in-game pass. Record GetBuildInfo() and exact Lua errors if failures occur.
+The author tested v1.0.1 on 22 November 2026. v1.0.2 has automated validation only. Record GetBuildInfo(), enabled addons and exact Lua errors when performing this real-client checklist. A mock layout or passing test is not an in-game pass.
 
-1. Unzip into the _forever_/Interface/AddOns folder. Enable Just 20 Minutes. Verify no loading error.
-2. First login: welcome window, 20-minute default, Start/Settings/Maybe Later. Check the welcome does not recur after setup. The timer must not auto-start on future logins unless General > Auto-start is explicitly enabled.
-3. Check minimap watch icon: left-click opens/closes the timer, right-click opens Settings. Drag it around the minimap and confirm position persists after /reload; hide/show it in Appearance, reset its position and ensure /j20 config can reopen settings even when the minimap icon is hidden. Then drag the countdown widget, lock it and test opacity/scale/compact/progress/theme/text state and position persistence after /reload.
-4. Start 20 minutes, pause for 20 seconds, resume: verify no paused time was deducted. Test status, stop, reset and custom extension.
-5. Start 1 minute. Check no already-passed reminder on start, 00:00 exact end, completion dialog, +5/+10/+15 and Finish for Today.
-6. Verify 10/5/2 reminders on longer sessions and once-only behavior; test chat/screen/both/color-only/off, sound and Family Mode.
-7. Enter combat near an alert and expiration. With combat deferral on, no interruption; dialog appears afterward. No automatic character action.
-8. Try language auto, deDE and enUS; switch wind-down message option and completion modal preference.
-9. Test /reload while running, paused and expired. Test logout >15 seconds with resume disabled, then with resume enabled. Offline time never counts.
-10. Test a second character with unique duration/position, copy profile and reset with confirmation.
-11. Try malformed commands: /j20 start -1, /j20 add 0, /j20 start 999999 and unknown commands. No Lua errors.
-12. Back up WTF and test missing/corrupt SavedVariables, proper ZIP root folder, no network activity.
+1. Back up WTF/SavedVariables and install `Just20Minutes-v1.0.2.zip` into `_forever_/Interface/AddOns/`. One Just20Minutes folder; no nesting. Enable the addon and confirm no load errors. Existing account/character settings, minimap position and explicitly enabled auto-start survive the upgrade.
+2. With fresh settings, first login opens the welcome and leaves the timer idle. Maybe Later and Settings do not start it. Auto-start is off; sound is off. Check subsequent logins with widget visibility on/off. Enable auto-start explicitly and verify it starts only after the initial welcome has been handled.
+3. On 1920×1080 and 3440×1440 inspect all six settings pages in German and English. Scroll to each page's bottom. No clipped labels, overlaps or unreachable controls; the selected category is clear. Check the language/theme cycles and individual notification mode selections.
+4. About: verify Dennis Hilk, personal realm Normal (PvE), guild Ostfriesen Raid, MIT and Interface 16001. Select website, YouTube and GitHub URLs, copy with Ctrl+C, and paste outside WoW. Tab moves between links. No attempt to open the browser automatically.
+5. Keep widget visible while idle: the selected duration is gold, with a full bar. Start: green/selected accent. Near the end: amber/coral. Pause: blue and text says paused. Test compact mode and explicit status labels at 70%, 100% and 150% widget size. Text remains readable without relying on color.
+6. Move widget, main window and settings, then /reload. Position and scale persist. Test widget lock, account vs character position, position reset, opacity and progress. Change resolution/UI scale; all windows remain reachable.
+7. Minimap: left-click opens timer; right-click opens Settings; drag around minimap without opening a window. Tooltip shows idle or actual remaining time/status, without starting or pausing anything. Verify visibility, reset and persistence through /reload.
+8. Start 1 minute: one start message, warnings near 0:30 and 0:10, then 0:00. Start 2 minutes: 1:00 / 0:30 / expiry. Start 3 minutes: 1:30 / 1:00 / expiry. Start 5 minutes: 2:30 / 1:00 / expiry. No immediate warning flood.
+9. Longer sessions: 20 minutes has 10/5/2/0 reminders. A 10-minute start must not immediately announce 10 minutes. Switch off individual classic warnings and adaptive reminders. The schedule type is chosen at Start; switching adaptive off mutes outstanding adaptive warnings.
+10. Pause just before a warning, wait, resume. Paused time is not consumed. /reload just before and after a warning: it occurs once. Extend before/after halfway and after expiry: no repeated halfway or consumed warning; a fresh expiry can notify again. Check custom extensions and the 600-minute cap.
+11. Check Screen, Chat, Both, Color only and Off. Screen uses a readable noninteractive toast near the top for about five seconds; no duplicate chat. Chat never opens a toast. Both uses each channel once. Toast disabled uses the client notice area. Color only/Off produce no messages, sounds or automatic completion dialogs.
+12. Enable sound: one short internal tone per delivered notification. Disable again. Try Family Mode and wind-down tips in DE/EN. A two-minute family timer uses friendly one-minute/30-second/end wording.
+13. Enter combat across warnings and expiry. With combat deferral, no popup or toast; after combat, at most one current-time summary and the optional end dialog. Test disabling deferral: chat may be immediate, screen windows still wait. Stop or extend while a notification is deferred; no stale ending appears later.
+14. At expiry, verify friendly title/description and separate More Time (+5/+10/+15) / Done for Today sections. Family Mode has its own wording. Finishing only stops this timer. It never logs out or performs a character action.
+15. Start/Pause/Resume/Stop/Reset/Extend buttons must reflect the actual state. Test custom duration Enter and keyboard focus. Restarting from Settings asks before replacing an active session. Main window and Settings do not unexpectedly stack.
+16. /reload while running, paused and expired; logout >15 seconds with resume disabled/enabled. Offline time never counts. Very short relogs may be interpreted as reloads; crashes may lose unsaved recent changes (documented SavedVariables limitations).
+17. Use a second character with a separate duration/position. Copy another profile with confirmation; cancel and confirm reset actions. Other characters' profiles remain intact. Check unknown/invalid slash commands; no Lua errors.
 
-For bug reports include build number, enabled addons, reproduction steps and the actual error. Screenshots must come from a real game session.
+Record which steps passed, exact client build, screen size/UI scale, and screenshots from the actual game. Report failures with reproduction steps; do not replace actual client results with the automated mock preview.
