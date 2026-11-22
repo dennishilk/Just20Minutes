@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.4] - 2026-11-22
+
+- Remove the Buy Me a Coffee link and donation labels from the in-game About page.
+- Keep the optional support link on the English and German README pages only.
+- Retain the existing website, YouTube and GitHub links and all timer features.
+
 ## [1.0.3] - 2026-11-22
 
 - Add Dennis's optional Buy Me a Coffee link to About, with localized German/English labels and the same selectable, keyboard-accessible URL fields.

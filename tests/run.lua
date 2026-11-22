@@ -424,7 +424,7 @@ test("all settings pages scroll and active category is marked",function()
 end)
 test("links remain selectable, unmodified and keyboard-accessible",function()
  fresh();local expected={"https://www.dennishilk.com","https://www.youtube.com/@dennis_hilk",
- "https://github.com/dennishilk/Just20Minutes","https://buymeacoffee.com/dennishilk"}
+ "https://github.com/dennishilk/Just20Minutes"}
  eq(#J.settingUI.links,#expected)
  for i,edit in ipairs(J.settingUI.links) do
   eq(edit:GetText(),expected[i]);edit:SetFocus();assert(edit.highlighted)

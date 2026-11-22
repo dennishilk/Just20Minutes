@@ -1,11 +1,11 @@
-# WoW Forever v1.0.3 in-game acceptance checklist
+# WoW Forever v1.0.4 in-game acceptance checklist
 
-The author tested v1.0.1 on 22 November 2026. v1.0.3 has automated validation only. Record GetBuildInfo(), enabled addons and exact Lua errors when performing this real-client checklist. A mock layout or passing test is not an in-game pass.
+The author tested v1.0.1 on 22 November 2026. v1.0.4 has automated validation only. Record GetBuildInfo(), enabled addons and exact Lua errors when performing this real-client checklist. A mock layout or passing test is not an in-game pass.
 
-1. Back up WTF/SavedVariables and install `Just20Minutes-v1.0.3.zip` into `_forever_/Interface/AddOns/`. One Just20Minutes folder; no nesting. Enable the addon and confirm no load errors. Existing account/character settings, minimap position and explicitly enabled auto-start survive the upgrade.
+1. Back up WTF/SavedVariables and install `Just20Minutes-v1.0.4.zip` into `_forever_/Interface/AddOns/`. One Just20Minutes folder; no nesting. Enable the addon and confirm no load errors. Existing account/character settings, minimap position and explicitly enabled auto-start survive the upgrade.
 2. With fresh settings, first login opens the welcome and leaves the timer idle. Maybe Later and Settings do not start it. Auto-start is off; sound is off. Check subsequent logins with widget visibility on/off. Enable auto-start explicitly and verify it starts only after the initial welcome has been handled.
 3. On 1920×1080 and 3440×1440 inspect all six settings pages in German and English. Scroll to each page's bottom. No clipped labels, overlaps or unreachable controls; the selected category is clear. Check the language/theme cycles and individual notification mode selections.
-4. About: verify Dennis Hilk, personal realm Normal (PvE), guild Ostfriesen Raid, MIT and Interface 16001. Select website, YouTube, GitHub and Buy Me a Coffee URLs, copy with Ctrl+C, and paste outside WoW. Tab moves between links. No attempt to open the browser automatically.
+4. About: verify Dennis Hilk, personal realm Normal (PvE), guild Ostfriesen Raid, MIT and Interface 16001. Select website, YouTube and GitHub URLs, copy with Ctrl+C, and paste outside WoW. Tab moves between links. No attempt to open the browser automatically. No donation link or request appears in the addon.
 5. Keep widget visible while idle: the selected duration is gold, with a full bar. Start: green/selected accent. Near the end: amber/coral. Pause: blue and text says paused. Test compact mode and explicit status labels at 70%, 100% and 150% widget size. Text remains readable without relying on color.
 6. Move widget, main window and settings, then /reload. Position and scale persist. Test widget lock, account vs character position, position reset, opacity and progress. Change resolution/UI scale; all windows remain reachable.
 7. Minimap: left-click opens timer; right-click opens Settings; drag around minimap without opening a window. Tooltip shows idle or actual remaining time/status, without starting or pausing anything. Verify visibility, reset and persistence through /reload.

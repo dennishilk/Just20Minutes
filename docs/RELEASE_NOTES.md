@@ -1,11 +1,12 @@
-## Just 20 Minutes v1.0.3 — A coffee for Dennis
+## Just 20 Minutes v1.0.4 — About page update
 
-- Neuer kopierbarer Kaffeelink unter **Über → Mehr von Dennis**: https://buymeacoffee.com/dennishilk
-- Deutsche Beschriftung **Kaffeekasse**, englisch **Buy a coffee**; per Klick markieren und mit Strg+C kopieren.
-- Der Link steht auch in beiden README-Dateien.
+- Kaffeelink und Spendenbeschriftungen aus der Ingame-Infoseite entfernt.
+- Freiwillige Unterstützung bleibt über die deutsche und englische README möglich.
+- Website, YouTube und GitHub bleiben im Addon als kopierbare Links erhalten.
+- Alle Timerfunktionen, intelligenten Erinnerungen und Einstellungen bleiben erhalten.
 
-Download **Just20Minutes-v1.0.3.zip** and extract the contained `Just20Minutes` folder into `_forever_/Interface/AddOns/`. This small update includes the visual polish and adaptive reminders from v1.0.2. Existing settings and character profiles are kept. Previous releases remain available.
+Download **Just20Minutes-v1.0.4.zip** and extract the contained `Just20Minutes` folder into `_forever_/Interface/AddOns/`. Existing settings and character profiles are kept. Previous releases remain available.
 
-Automated checks cover Lua 5.1 syntax, all 75 timer/UI/localization regressions, the four selectable About links and ZIP validation. Real WoW Forever in-game testing is still pending.
+Automated validation covers Lua 5.1 syntax, all 75 timer/UI/localization regressions, the three selectable About links and the installable ZIP. Real WoW Forever in-game acceptance testing is still pending.
 
 MIT · Interface 16001 · Fully offline · No runtime libraries · No forced logout

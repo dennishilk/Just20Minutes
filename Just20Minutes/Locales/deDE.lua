@@ -155,7 +155,6 @@ J.locales.deDE = {
     WEBSITE_LABEL = "Webseite",
     YOUTUBE_LABEL = "YouTube",
     GITHUB_LABEL = "GitHub / Addon",
-    COFFEE_LABEL = "Kaffeekasse",
     COPY_LINK_HINT = "Link anklicken und mit Strg+C kopieren. Im eigenen Browser öffnen.",
     SECTION_PRIVACY = "Für deine Spielzeit",
     ABOUT_PRIVACY = "Spielzeit wählen, Azeroth genießen, selbst entscheiden, wann Schluss ist. Vollständig offline: kein Tracking, keine Datenübertragung. Freiwilliges Zeitmanagement, keine Kindersicherung.",
