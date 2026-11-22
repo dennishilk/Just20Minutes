@@ -86,9 +86,13 @@ local function cleanSession(input)
     if state ~= "RUNNING" and state ~= "PAUSED" and state ~= "EXPIRED" then
         state = "IDLE"
     end
-    local remaining = finite(input.remaining, 0, 36000) and input.remaining or 0
-    local duration = finite(input.duration, 60, 36000) and input.duration or 1200
-    if remaining <= 0 and (state == "RUNNING" or state == "PAUSED") then
+    local validRemaining = finite(input.remaining, 0, 36000)
+    local validDuration = finite(input.duration, 60, 36000)
+    local remaining = validRemaining and input.remaining or 0
+    local duration = validDuration and input.duration or 1200
+    if not validRemaining or not validDuration then
+        state = "IDLE"
+    elseif remaining <= 0 and (state == "RUNNING" or state == "PAUSED") then
         state = "EXPIRED"
     end
     local fired = {}
