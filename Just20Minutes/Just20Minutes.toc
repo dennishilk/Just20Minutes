@@ -1,0 +1,19 @@
+## Interface: 16001
+## Title: Just 20 Minutes
+## Notes: Your friendly WoW session timer.
+## Notes-deDE: Dein freundlicher Spielzeit-Timer für Azeroth.
+## Author: Dennis Hilk
+## Version: 1.0.0
+## SavedVariables: Just20MinutesDB
+## X-License: MIT
+## X-Website: https://github.com/dennishilk/Just20Minutes
+
+Locales\enUS.lua
+Locales\deDE.lua
+Core.lua
+Database.lua
+Timer.lua
+Notifications.lua
+UI.lua
+Settings.lua
+Commands.lua

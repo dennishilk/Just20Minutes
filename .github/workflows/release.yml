@@ -1,0 +1,43 @@
+name: Validate, package and release
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lua 5.1
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y lua5.1
+      - name: Syntax check
+        run: |
+          find Just20Minutes tests -type f -name '*.lua' -print0 | xargs -0 -n1 luac5.1 -p
+      - name: Mock-client regression tests
+        run: lua5.1 tests/run.lua
+      - name: Validate and package
+        run: python3 scripts/package.py
+      - name: Upload installable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Just20Minutes-v1.0.0
+          path: dist/Just20Minutes-v1.0.0.zip
+          if-no-files-found: error
+      - name: Create GitHub release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view v1.0.0 >/dev/null 2>&1; then
+            gh release create v1.0.0 \
+              dist/Just20Minutes-v1.0.0.zip \
+              --target "$GITHUB_SHA" \
+              --title "Just 20 Minutes v1.0.0" \
+              --notes "First Forever build (Interface 16001). Localized timer, UI, profiles, alerts and tests. Ingame validation pending."
+          fi

@@ -1,0 +1,85 @@
+# Just 20 Minutes
+
+**Your friendly WoW session timer.** *Enjoy Azeroth. Remember real life.*
+
+**Author:** Dennis Hilk | **Version:** 1.0.0 | **WoW Forever interface:** 16001 | **License:** MIT
+
+[Deutsch](README.de.md) · [Download releases](https://github.com/dennishilk/Just20Minutes/releases) · [Report an issue](https://github.com/dennishilk/Just20Minutes/issues)
+
+Choose your playtime, enjoy Azeroth and get gentle reminders before it's time to finish. **This addon is voluntary, not parental control.** It never logs you out, touches your character, tracks other people or accesses the network.
+
+## Features
+
+- Eight presets (10/15/20/30/45/60/90/120 minutes), custom 1–600 minutes, a default of 20 minutes.
+- Timer: start, pause, resume, stop, reset, +5/+10/+15/custom extension. HH:MM:SS for long sessions.
+- Draggable, position-lockable widget with 70–150% scale, opacity, compact mode, progress bar, selectable themes and optional colorblind-friendly text status.
+- One-time warnings at 10/5/2/0 minutes, individually configurable, including chat/screen/both/color-only/off, optional sound and defer-until-combat-ends.
+- Friendly wind-down guidance, optional Family Mode and end-of-session dialog with manual extensions.
+- Full English and German UI, slash help and errors.
+- Account settings plus per-character duration/position, profile copying and confirmed reset. Local SavedVariables only.
+- No required libraries, telemetry, advertising, accounts or external services.
+
+## Installation
+
+Download **Just20Minutes-v1.0.0.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
+
+    World of Warcraft/
+      _forever_/
+        Interface/
+          AddOns/
+            Just20Minutes/
+              Just20Minutes.toc
+              Core.lua
+              Database.lua
+              Timer.lua
+              Notifications.lua
+              UI.lua
+              Settings.lua
+              Commands.lua
+              Locales/
+                enUS.lua
+                deDE.lua
+
+Common Windows path: C:\Program Files (x86)\World of Warcraft\_forever_\Interface\AddOns. Under Linux/Lutris/Wine, find the game folder in your Wine prefix and use the corresponding _forever_/Interface/AddOns location. Restart or /reload; enable the addon in WoW's addon menu.
+
+## Controls
+
+Type **/j20** to open the window; select a preset or enter a custom minute value and press Enter, then Start. Drag the widget with the left mouse button (when unlocked); click its three-dot button to reopen the window.
+
+| Slash command | What it does |
+| --- | --- |
+| /j20 or /just20minutes | Open timer |
+| /j20 start | Start with default duration |
+| /j20 start 60 | Start 60 minutes |
+| /j20 pause, /j20 resume | Pause/resume |
+| /j20 stop, /j20 reset | Stop/reset |
+| /j20 add 10 | Extend ten minutes |
+| /j20 status | Show remaining time |
+| /j20 config | Settings |
+| /j20 lock, /j20 unlock | Lock/unlock widget position |
+| /j20 help | Command help |
+
+All entered durations must be whole numbers from 1 to 600. At most 600 minutes of remaining time can be held after an extension. Start never silently replaces an already-running session.
+
+Settings are divided into **General** (duration, start/login behavior), **Appearance** (scale, opacity, compact mode, progress, theme and position), **Notifications** (channels, sound, fight deferral, individual alerts), **Experience** (Family Mode, guidance, end dialog, language), **Profiles** (individual character duration/position, copying and reset) and **About**.
+
+## Timer behavior and limitations
+
+The countdown is based on elapsed GetTime(), not frame count. No time is consumed during a pause or while offline. By default a normal logout ends a session; enabling resume-on-login keeps the remaining time. /reload attempts to preserve the session.
+
+**Caveat:** WoW's SavedVariables mechanism does not unambiguously distinguish logout from UI reload. The addon hooks ReloadUI() and uses a 15-second threshold as a fallback. A very fast relog can thus be treated like a reload even with resume disabled. A crash can lose recent updates because the game writes SavedVariables at logout/reload, not continuously.
+
+Each 10/5/2-minute threshold triggers once per session. If a long lag skips multiple, only the most urgent enabled reminder is delivered. An extension does not re-arm earlier warnings; the new expiry can warn again. Short sessions never generate already-passed alerts on start. Combat can delay notifications and the end dialog, but never stops the timer.
+
+**Family Mode changes language, not enforcement.** The addon cannot force a rest or act as a child safety lock.
+
+## Tests, privacy and contributions
+
+Run locally with Lua 5.1 and Python 3:
+
+    lua5.1 tests/run.lua
+    python3 scripts/package.py
+
+GitHub Actions also performs syntax, mock-API regression and TOC/ZIP checks before publication. These tests **do not prove compatibility with the actual WoW Forever client**. Follow the [manual in-game checklist](docs/MANUAL_TESTING.md). Screenshots will be added only after genuine game testing.
+
+There are no network calls, telemetry, ads or registration; preferences remain in WoW's local SavedVariables. Report defects and propose changes using [Issues](https://github.com/dennishilk/Just20Minutes/issues). See [CHANGELOG](CHANGELOG.md) and the preserved [MIT LICENSE](LICENSE).
