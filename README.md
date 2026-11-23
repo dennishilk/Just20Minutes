@@ -26,6 +26,12 @@ Choose your playtime, enjoy Azeroth and get gentle reminders before it's time to
 
 ## Installation
 
+### CurseForge app (after project approval)
+
+Once **Just 20 Minutes** has been approved and listed on CurseForge, open the **CurseForge app**, select **World of Warcraft → Addons**, search for **Just 20 Minutes**, and use **Install** for a compatible game installation. If the app does not recognize your WoW Forever installation or the project is not listed yet, use the manual method below. GitHub commits alone do not update the CurseForge download; a new addon file must be published there separately.
+
+### Manual installation (GitHub Releases)
+
 Download **Just20Minutes-v1.0.4.zip** from [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases). Extract its single **Just20Minutes** folder to the Forever AddOns directory:
 
     World of Warcraft/
@@ -111,7 +117,7 @@ Run locally with Lua 5.1 and Python 3:
     lua5.1 tests/run.lua
     python3 scripts/package.py
 
-GitHub Actions also performs syntax, mock-API regression and TOC/ZIP checks before publication. The author tested v1.0.1 in the real client on 22 November 2026. **The new v1.0.4 has automated mock-client validation only; its in-game acceptance test is still pending.** Follow the [manual in-game checklist](docs/MANUAL_TESTING.md). Mock layouts are not game screenshots.
+GitHub Actions also performs syntax, mock-API regression and TOC/ZIP checks before publication. The author tested v1.0.1 in the real client on 22 November 2026. **The current v1.0.4 release has also been tested by the author in the real WoW Forever 1.60.1 client, including a full 60-minute timer session.** Automated mock-client and packaging tests provide additional validation. The [manual in-game checklist](docs/MANUAL_TESTING.md) covers further scenarios; this does not imply that every possible settings combination has been manually tested. Mock layouts are not game screenshots.
 
 There are no network calls, telemetry, ads or registration; preferences remain in WoW's local SavedVariables. Report defects and propose changes using [Issues](https://github.com/dennishilk/Just20Minutes/issues). See [CHANGELOG](CHANGELOG.md) and the preserved [MIT LICENSE](LICENSE).
 
