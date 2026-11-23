@@ -26,6 +26,12 @@
 
 ## Installation
 
+### Über die CurseForge-App (nach Freigabe)
+
+Sobald **Just 20 Minutes** von CurseForge freigegeben und gelistet ist, in der **CurseForge-App** unter **World of Warcraft → Addons** nach **Just 20 Minutes** suchen und für eine kompatible Spielinstallation auf **Installieren** klicken. Falls die App deine WoW-Forever-Installation nicht erkennt oder das Projekt noch nicht gelistet ist, funktioniert die manuelle Installation weiter unten. GitHub-Commits aktualisieren CurseForge nicht automatisch: Dort muss eine neue Addon-Datei gesondert veröffentlicht werden.
+
+### Manuelle Installation (GitHub Releases)
+
 Das **Just20Minutes-v1.0.4.zip** von [GitHub Releases](https://github.com/dennishilk/Just20Minutes/releases) herunterladen, entpacken und den darin liegenden Ordner **Just20Minutes** hierher kopieren:
 
     World of Warcraft/
@@ -109,7 +115,7 @@ Lokale Prüfung mit Lua 5.1 und Python 3:
     lua5.1 tests/run.lua
     python3 scripts/package.py
 
-GitHub Actions prüft außerdem Syntax, Tests, TOC und Installations-ZIP. Version 1.0.1 wurde vom Autor am 22. November 2026 im echten Client getestet. **Für die neue Version 1.0.4 liegen automatisierte Tests mit einem simulierten Client vor; die Ingame-Abnahme steht noch aus.** Die [manuelle Testliste](docs/MANUAL_TESTING.md) beschreibt die Prüfung. Simulierte Layouts sind keine Ingame-Screenshots.
+GitHub Actions prüft außerdem Syntax, Tests, TOC und Installations-ZIP. Version 1.0.1 wurde vom Autor am 22. November 2026 im echten Client getestet. **Auch die aktuelle Version 1.0.4 wurde vom Autor im echten WoW-Forever-Client 1.60.1 getestet, einschließlich einer vollständig durchgelaufenen 60-Minuten-Sitzung.** Automatisierte Tests mit simuliertem Client und Paketprüfungen ergänzen den Praxistest. Die [manuelle Testliste](docs/MANUAL_TESTING.md) deckt weitere Szenarien ab; nicht jede mögliche Einstellungskombination wurde dadurch zwangsläufig manuell geprüft. Simulierte Layouts sind keine Ingame-Screenshots.
 
 Daten bleiben lokal in WoWs SavedVariables. Keine externen Dienste, Konten, Werbung oder Telemetrie. Feedback über [Issues](https://github.com/dennishilk/Just20Minutes/issues). Siehe [CHANGELOG](CHANGELOG.md) und die unveränderte [MIT-Lizenz](LICENSE).
 
